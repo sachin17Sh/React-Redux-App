@@ -1,28 +1,28 @@
-import { Component} from 'react';
+// import { Component} from 'react';
 import classes from './Counter.module.css';
 import { useSelector, useDispatch , connect} from 'react-redux';
-
+import { actionCounter } from '../store/CounterSlice';
 
 //functional component with React Redux
 const Counter = () => {
   const dispatch = useDispatch()
-  const Counter = useSelector(state => state.counter)
-  const show = useSelector(state=>state.showCounter)
+  const Counter = useSelector(state => state.counter.counter)
+  const show = useSelector(state=>state.counter.showCounter)
 
 
   const incrementHandler = () =>{
-    dispatch({type: 'increment'})
+    dispatch(actionCounter.increment())
   }
   const decrementHandler = () =>{
-    dispatch({type: 'decrement'})
+    dispatch(actionCounter.decrement())
   }
 
   const increaseHandler = ()=>{
-    dispatch({type: 'increase', amount: 10})
+    dispatch(actionCounter.increase(10))
   }
 
   const toggleCounterHandler = () => {
-    dispatch({type: 'toggle'})
+    dispatch(actionCounter.toggleCounter())
   };
 
   return (
